@@ -1,4 +1,6 @@
-<?php include_once 'partials/header.php'; ?>
+<?php 
+$title = "Activity";
+include_once 'partials/header.php'; ?>
 		<!--DASHBOARD SECTION-->
 		<div class="dashboard">
             <?php include_once 'partials/db-left.php'; ?>

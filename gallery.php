@@ -1,17 +1,17 @@
-<?php include_once 'partials/header.php'; ?>
+<?php 
+$title = "Gallery";
+include_once 'partials/header.php'; ?>
 		<!--TOP BANNER-->
 		<div class="inn-banner">
 			<div class="container">
 				<div class="row">
-					<h4>Phoro Gallery</h4>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.
-						<p>
-							<ul>
-								<li><a href="#">Home</a>
-								</li>
-								<li><a href="#">Hotel Images</a>
-								</li>
-							</ul>
+					<h4><?php echo $title; ?></h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
+					<ul>
+						<li><a href="index.php">Home</a>
+						</li>
+						<li><?php echo $title; ?></li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -20,7 +20,7 @@
 			<div class="container">
 				<div class="row inn-page-com">
 					<div class="page-head">
-						<h2>Photo Gallery</h2>
+						<h2><?php echo $title; ?></h2>
 						<div class="head-title">
 							<div class="hl-1"></div>
 							<div class="hl-2"></div>

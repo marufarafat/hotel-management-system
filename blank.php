@@ -1,13 +1,15 @@
-<?php include_once 'partials/header.php'; ?>
+<?php 
+$title = "Blank";
+include_once 'partials/header.php'; ?>
         <!--TOP BANNER-->
         <div class="inn-banner">
             <div class="container">
                 <div class="row">
-                    <h4>Lorem ipsum</h4>
+                    <h4><?php echo $title; ?></h4>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
                     <ul>
                         <li><a href="index.php">Home</a></li>
-                        <li>blank</li>
+                        <li><?php echo $title; ?></li>
                     </ul>
                 </div>
             </div>

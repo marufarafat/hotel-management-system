@@ -67,7 +67,7 @@
                         <ul>
                             <li><a href="index.php">Home</a>
                             </li>
-                            <li><a href="rooms.php">Rooms</i></a>
+                            <li><a href="cabins.php">Cabins</i></a>
                             </li>
                             <li><a href="services.php">Services</a>
                             </li>

@@ -1,4 +1,6 @@
-<?php include_once 'partials/header.php'; ?>
+<?php 
+$title = "Home";
+include_once 'partials/header.php'; ?>
 		<!--Check Availability SECTION-->
 		<div>
 			<div class="slider fullscreen">

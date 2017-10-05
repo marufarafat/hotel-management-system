@@ -1,15 +1,15 @@
-<?php include_once 'partials/header.php'; ?>
+<?php 
+$title = "Cabins";
+include_once 'partials/header.php'; ?>
 		<!--TOP BANNER-->
 		<div class="inn-banner">
 			<div class="container">
 				<div class="row">
-					<h4>All Room Types</h4>
+					<h4><?php echo $title; ?></h4>
 					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
 					<ul>
-						<li><a href="#">Home</a>
-						</li>
-						<li><a href="#">Rooms</a>
-						</li>
+						<li><a href="index.php">Home</a></li>
+						<li><?php echo $title; ?></li>
 					</ul>
 				</div>
 			</div>
@@ -19,7 +19,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="page-head">
-						<h2>Room Types</h2>
+						<h2><?php echo $title; ?></h2>
 						<div class="head-title">
 							<div class="hl-1"></div>
 							<div class="hl-2"></div>

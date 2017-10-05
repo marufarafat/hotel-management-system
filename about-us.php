@@ -1,15 +1,15 @@
-<?php include_once 'partials/header.php'; ?>
+<?php 
+$title = "About us";
+include_once 'partials/header.php'; ?>
 		<div class="inn-banner">
 			<div class="container">
 				<div class="row">
-					<h4>About Us</h4>
+					<h4><?php echo $title; ?></h4>
 					<p>Curabitur auctor, massa sed interdum ornare, nulla sem vestibulum purus, eu maximus magna urna eu nunc.</p>
 					<p> </p>
 					<ul>
-						<li><a href="#">Home</a>
-						</li>
-						<li><a href="#">About Us</a>
-						</li>
+						<li><a href="index.php">Home</a></li>
+						<li><?php echo $title; ?></li>
 					</ul>
 				</div>
 			</div>
@@ -18,7 +18,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="page-head">
-						<h2>About Us</h2>
+						<h2><?php echo $title; ?></h2>
 						<div class="head-title">
 							<div class="hl-1"></div>
 							<div class="hl-2"></div>

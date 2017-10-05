@@ -1,4 +1,6 @@
-<?php include_once 'partials/header.php'; ?>
+<?php 
+$title = "Cabin";
+include_once 'partials/header.php'; ?>
 		<div class="hp-banner"> <img src="images/detailed-banner.jpg" alt=""> </div>
 		<!--END HOTEL ROOMS-->
 		<!--CHECK AVAILABILITY FORM-->

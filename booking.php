@@ -1,4 +1,6 @@
-<?php include_once 'partials/header.php'; ?>
+<?php 
+$title = "Booking";
+include_once 'partials/header.php'; ?>
 		<div class="inn-body-section inn-booking">
 			<div class="container">
 				<div class="row">
