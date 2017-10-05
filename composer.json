@@ -1,0 +1,7 @@
+{
+    "require": {
+        "delight-im/auth": "^6.1",
+        "respect/validation": "^1.1",
+        "phpmailer/phpmailer": "^6.0"
+    }
+}
