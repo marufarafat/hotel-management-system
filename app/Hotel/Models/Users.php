@@ -14,32 +14,21 @@ class Users extends Model{
     protected $table = 'Users';
     
     protected $fillable = [
+        "full_name",
         'email', 
         "password", 
         "username", 
+        "phone", 
+        "profile_picture", 
+        "address1", 
+        "address2", 
+        "city", 
+        "postcode", 
+        "gender", 
         "status", 
         "verified", 
         "resettable", 
         "roles_mask", 
         "last_login"
     ]; 
-
-    public function createTable(){
-        Capsule::schema()->create($this->table, function($table){
-            $table->increments('id');
-            $table->string('email', 249)->unique();
-            $table->string('password', 255);
-            $table->string('username', 100);
-            $table->tinyInteger('status');
-            $table->tinyInteger('verified');
-            $table->tinyInteger('resettable');
-            $table->integer('roles_mask');
-            $table->integer('registered');
-            $table->integer('last_login');
-        });
-    }
-
-    public function dropTable(){
-        Capsule::schema()->dropIfExists($this->table);
-    }
 }

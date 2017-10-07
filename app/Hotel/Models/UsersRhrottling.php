@@ -19,20 +19,4 @@ class UsersRhrottling extends Model{
         "expires_at",
         "bucket"
     ]; 
-
-    public function createTable(){
-        Capsule::schema()->create($this->table, function($table){
-
-            $table->string("bucket", 44);
-            $table->float("tokens");
-            $table->integer('replenished_at');
-            $table->integer('expires_at');
-            $table->primary('bucket');
-            $table->index('expires_at');
-        });
-    }
-
-    public function dropTable(){
-        Capsule::schema()->dropIfExists($this->table);
-    }
 }
