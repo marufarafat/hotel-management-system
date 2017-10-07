@@ -1,7 +1,16 @@
+            <?php 
+
+
+// checking login or not
+if (!$auth->isLoggedIn()) {
+    header("location: login.php");
+}
+
+             ?>
             <div class="db-left">
-                <div class="db-left-1">
-                    <h4>Jana Novakova</h4>
-                    <p>Newyork, United States</p>
+                <div class="db-left-1" style="background: url(<?php echo $user["profile_picture"];  ?>) no-repeat center center;">
+                    <h4><?php echo $auth->getUsername(); ?></h4>
+                    <p><?php echo $user["address2"];  ?></p>
                 </div>
                 <div class="db-left-2">
                     <ul>

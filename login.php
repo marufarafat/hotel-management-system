@@ -1,6 +1,51 @@
 <?php 
 $title = "Login";
-include_once 'partials/header.php'; ?>
+include_once 'partials/header.php'; 
+
+
+// checking login or not
+if ($auth->isLoggedIn()) {
+    header("location: dashboard.php");
+}
+
+// checking login form submited or not 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"]) && isset($_POST["csrf"]) && $_POST["csrf"] === \Hotel\CSRF::get("login")) {
+
+    $v = new Valitron\Validator($_POST);
+    $v->rule('required', ['email', 'password']);
+    $v->rule('email', 'email');
+
+    if (!$v->validate()) {
+        $misc->setMessages($v->errors());
+    } else{
+
+        if (isset($_POST['remember']) && $_POST['remember'] == "on") {
+            // keep logged in for one year
+            $rememberDuration = (int) (60 * 60 * 24 * 365.25);
+
+        } else {
+            // do not keep logged in after session ends
+            $rememberDuration = null;
+        }
+        try {
+            $auth->login($_POST['email'], $_POST['password'], $rememberDuration);
+
+
+            header("Location: dashboard.php");
+
+        }  catch (\Delight\Auth\InvalidEmailException $e) {
+            $misc->setMessages("Wrong credentials.");
+        } catch (\Delight\Auth\InvalidPasswordException $e) {
+            $misc->setMessages("Wrong credentials.");
+        } catch (\Delight\Auth\EmailNotVerifiedException $e) {
+            $misc->setMessages("Wrong credentials.");
+        } catch (\Delight\Auth\TooManyRequestsException $e) {
+            $misc->setMessages("Bad request.");
+        }
+    }
+}
+
+?>
         <!--TOP BANNER-->
         <div class="inn-banner">
             <div class="container">
@@ -25,40 +70,47 @@ include_once 'partials/header.php'; ?>
                             <div class="hl-2"></div>
                             <div class="hl-3"></div>
                         </div>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
                     </div>
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                         <div class="dex_login book-form inn-com-form form-ch-box">
-                            <form method="post" autocomplete="off">
+                            <form method="post" action="" autocomplete="off">
                             <h3>Login to your account.</h3>
+
+                                <?php 
+                                echo "<pre>";
+                                var_dump($misc->getMessages());
+                                echo "</pre>";
+                                 ?>
+
                                 <div>
                                     <div class="input-field s12">
-                                        <input type="email" class="validate">
+                                        <input type="email" name="email" class="validate">
                                         <label>Email id</label>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="input-field s12">
-                                        <input type="password" class="validate">
+                                        <input type="password" name="password" class="validate">
                                         <label>Password</label>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="s12 log-ch-bx">
                                         <p>
-                                            <input type="checkbox" id="remember" />
+                                            <input type="checkbox" name="remember" id="remember" />
                                             <label for="remember">Remember me</label>
                                         </p>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="input-field s4">
-                                        <input type="submit" value="Register" class="waves-effect waves-light log-in-btn"> </div>
+                                        <input type="submit" value="Login" name="login" class="waves-effect waves-light log-in-btn"> </div>
                                 </div>
                                 <div>
                                     <div class="input-field s12"> <a href="registration.php">Create a new account</a> </div>
                                 </div>
+            <input type="hidden" name="csrf" value="<?php echo \Hotel\CSRF::generate("login"); ?>">
                             </form>
                         </div>
                     </div>
