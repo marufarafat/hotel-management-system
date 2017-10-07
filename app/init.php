@@ -1,7 +1,5 @@
 <?php 
 
-include_once 'vendor/autoload.php';
-
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Delight\Auth\Auth;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -31,12 +29,6 @@ $mail->Subject = 'PHPMailer mail() test';
 $mail->msgHTML("<strong> strong </strong>");
 $mail->AltBody = 'This is a plain-text message body';
 
-//send the message, check for errors
-// if (!$mail->send()) {
-//     echo "Mailer Error: " . $mail->ErrorInfo;
-// } else {
-//     echo "Message sent!";
-// }
 
 // database configuration
 $capsule = new Capsule;
@@ -55,23 +47,26 @@ $capsule->addConnection(
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
-$user               = new Hotel\Models\Users;
-$UsersConfirmations = new Hotel\Models\UsersConfirmations;
-$UsersRemembered    = new Hotel\Models\UsersRemembered;
-$UsersResets        = new Hotel\Models\UsersResets;
-$UsersRhrottling    = new Hotel\Models\UsersRhrottling;
 
-$user->dropTable();
-$user->createTable();
+$auth = new Auth($capsule->getDatabaseManager()->getPdo());
 
-$UsersRemembered->dropTable();
-$UsersRemembered->createTable();
+$misc = new Hotel\Misc;
 
-$UsersConfirmations->dropTable();
-$UsersConfirmations->createTable();
+// checking profile complete or not 
+if ($auth->isLoggedIn()) {
 
-$UsersResets->dropTable();
-$UsersResets->createTable();
+    $user = \Hotel\Models\Users::find($auth->getUserId())->toArray();
 
-$UsersRhrottling->dropTable();
-$UsersRhrottling->createTable();
+    $proile = explode("/", $_SERVER['REQUEST_URI']);
+
+    if ($user["complete_profile"] == 0) {
+        if ( end($proile) !== "complete-profile.php") header("location: complete-profile.php");
+    }
+    if ($user["complete_profile"] == 1) {
+        if ( end($proile) === "complete-profile.php") header("location: dashboard.php");
+    }
+}
+
+
+
+

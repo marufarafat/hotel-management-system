@@ -1,5 +1,7 @@
 
-<?php include_once 'app/init.php'; ?>
+<?php 
+include_once 'vendor/autoload.php';
+include_once 'app/init.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
