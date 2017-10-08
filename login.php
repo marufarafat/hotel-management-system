@@ -30,8 +30,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"]) && isset($_PO
         try {
             $auth->login($_POST['email'], $_POST['password'], $rememberDuration);
 
-
-            header("Location: dashboard.php");
+            if ($auth->admin()->doesUserHaveRole($auth->getUserId(), \Delight\Auth\Role::ADMIN)) {
+                header("location: admin/");
+            } else {
+                header("Location: dashboard.php");
+            }
+            
 
         }  catch (\Delight\Auth\InvalidEmailException $e) {
             $misc->setMessages("Wrong credentials.");

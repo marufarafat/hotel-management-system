@@ -2,9 +2,8 @@
 $title = "Profile";
 include_once 'partials/header.php'; 
 
-
 // checking condition form using csrf protection
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["complete-profile"]) && isset($_POST["csrf"]) && $_POST["csrf"] === \Hotel\CSRF::get("complete-profile")) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["complete-profile"])) {
 
     // setting conditiion for input field
     $v = new Valitron\Validator($_POST);
@@ -121,7 +120,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["complete-profile"]) &&
                             <div class="input-field col s8">
                                 <input type="submit" value="Submit" name="complete-profile" class="waves-effect waves-light pro-sub-btn" id="pro-sub-btn"> </div>
                         </div>
-        <input type="hidden" name="csrf" value="<?php echo \Hotel\CSRF::generate("complete-profile"); ?>">
 					</form>
 				</div>
 			</div>

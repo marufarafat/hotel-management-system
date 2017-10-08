@@ -66,7 +66,6 @@ if ($auth->isLoggedIn()) {
         if ( end($proile) === "complete-profile.php") header("location: dashboard.php");
     }
 }
-
-
-
-
+if ($auth->admin()->doesUserHaveRole(4, \Delight\Auth\Role::ADMIN)) {
+    
+}
