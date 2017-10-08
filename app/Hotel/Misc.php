@@ -53,13 +53,12 @@ class Misc{
         </div>
     <?php }
 
-    public function imageProcess($image){
+    public function imageProcess($image, $uploadDir = "uploads/", $img_x = 500, $img_y = 500){
 
         if ($image['name'] === "") {
             return false;
         }
 
-        $uploadDir = "uploads/";
         $unique = uniqid(mt_rand(), true);
 
         $profilePic = new \Hotel\Upload($image); 
@@ -74,8 +73,8 @@ class Misc{
             $profilePic->forbidden = array('application/*');
             $profilePic->image_convert = 'jpg';
             $profilePic->image_resize = true;
-            $profilePic->image_x = 500;
-            $profilePic->image_y = 500;
+            $profilePic->image_x = $img_x;
+            $profilePic->image_y = $img_y;
             $profilePic->Process($uploadDir);
             if ($profilePic->processed) {
                 return $uploadDir . $unique . ".jpg";
