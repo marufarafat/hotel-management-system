@@ -42,6 +42,9 @@
 
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
+            <a class="btn" href="../index.php">Visite Website</a>
+          </li>
+          <li class="nav-item">
             <form class="form-inline my-2 my-lg-0 mr-lg-2">
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search for...">

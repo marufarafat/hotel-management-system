@@ -20,6 +20,10 @@ include_once 'app/init.php'; ?>
     <!-- FONTAWESOME ICONS -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
 
+    <!-- FULL CALENDER -->
+    <link rel="stylesheet" href="css/fullcalendar.min.css">
+    <link rel="stylesheet" href="css/fullcalendar.print.min.css" rel='stylesheet' media='print'>
+
     <!-- ALL CSS FILES -->
     <link href="css/materialize.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">

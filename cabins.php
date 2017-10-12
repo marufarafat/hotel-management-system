@@ -1,6 +1,15 @@
 <?php 
 $title = "Cabins";
-include_once 'partials/header.php'; ?>
+include_once 'partials/header.php'; 
+
+$currency = null;
+if (isset($_GET["currency"])) {
+    $currency = $_GET["currency"];
+}
+
+$cabins = \Hotel\Models\Cabin::orderBy('id', 'DESC')->get()->toArray();
+
+?>
 		<!--TOP BANNER-->
 		<div class="inn-banner">
 			<div class="container">
@@ -27,250 +36,70 @@ include_once 'partials/header.php'; ?>
 						</div>
 						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
 					</div>
-					<!--ROOM SECTION-->
-					<div class="room">
-						<div class="ribbon ribbon-top-left"><span>Featured</span>
-						</div>
-						<!--ROOM IMAGE-->
-						<div class="r1 r-com"><img src="images/room/1.jpg" alt="" />
-						</div>
-						<!--ROOM RATING-->
-						<div class="r2 r-com">
-							<h4>Master Suite</h4>
-							<div class="r2-ratt"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <img src="images/h-trip.png" alt="" /> <span>Excellent  4.5 / 5</span> </div>
-							<ul>
-								<li>Max Adult : 3</li>
-								<li>Max Child : 1</li>
-								<li></li>
-								<li></li>
-							</ul>
-						</div>
-						<!--ROOM AMINITIES-->
-						<div class="r3 r-com">
-							<ul>
-								<li>Ironing facilities</li>
-								<li>Tea/Coffee maker</li>
-								<li>Air conditioning</li>
-								<li>Flat-screen TV</li>
-								<li>Wake-up service</li>
-							</ul>
-						</div>
-						<!--ROOM PRICE-->
-						<div class="r4 r-com">
-							<p>Price for 1 night</p>
-							<p><span class="room-price-1">5000</span> <span class="room-price">$: 7000</span>
-							</p>
-							<p>Non Refundable</p>
-						</div>
-						<!--ROOM BOOKING BUTTON-->
-						<div class="r5 r-com">
-							<div class="r2-available">Available</div>
-							<p>Price for 1 night</p> <a href="booking.php" class="inn-room-book">Book</a> </div>
-					</div>
-					<!--END ROOM SECTION-->
-					<!--ROOM SECTION-->
-					<div class="room">
-						<div class="ribbon ribbon-top-left"><span>Featured</span>
-						</div>
-						<!--ROOM IMAGE-->
-						<div class="r1 r-com"><img src="images/room/2.jpg" alt="" />
-						</div>
-						<!--ROOM RATING-->
-						<div class="r2 r-com">
-							<h4>Mini Suite</h4>
-							<div class="r2-ratt"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <img src="images/h-trip.png" alt="" /> <span>Excellent  4.2 / 5</span> </div>
-							<ul>
-								<li>Max Adult : 2</li>
-								<li>Max Child : 2</li>
-								<li></li>
-								<li></li>
-							</ul>
-						</div>
-						<!--ROOM AMINITIES-->
-						<div class="r3 r-com">
-							<ul>
-								<li>Ironing facilities</li>
-								<li>Tea/Coffee maker</li>
-								<li>Air conditioning</li>
-								<li>Flat-screen TV</li>
-								<li>Wake-up service</li>
-							</ul>
-						</div>
-						<!--ROOM PRICE-->
-						<div class="r4 r-com">
-							<p>Price for 1 night</p>
-							<p><span class="room-price-1">4000</span> <span class="room-price">$: 4500</span>
-							</p>
-							<p>Non Refundable</p>
-						</div>
-						<!--ROOM BOOKING BUTTON-->
-						<div class="r5 r-com">
-							<div class="r2-available">Available</div>
-							<p>Price for 1 night</p> <a href="booking.php" class="inn-room-book">Book</a> </div>
-					</div>
-					<!--END ROOM SECTION-->
-					<!--ROOM SECTION-->
-					<div class="room">
-						<!--<div class="ribbon ribbon-top-left"><span>Featured</span></div>
-						-->
-						<!--ROOM IMAGE-->
-						<div class="r1 r-com"><img src="images/room/3.jpg" alt="" />
-						</div>
-						<!--ROOM RATING-->
-						<div class="r2 r-com">
-							<h4>Ultra Deluxe</h4>
-							<div class="r2-ratt"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <img src="images/h-trip.png" alt="" /> <span>Excellent  3.9 / 5</span> </div>
-							<ul>
-								<li>Max Adult : 4</li>
-								<li>Max Child : 2</li>
-								<li></li>
-								<li></li>
-							</ul>
-						</div>
-						<!--ROOM AMINITIES-->
-						<div class="r3 r-com">
-							<ul>
-								<li>Ironing facilities</li>
-								<li>Tea/Coffee maker</li>
-								<li>Air conditioning</li>
-								<li>Flat-screen TV</li>
-								<li>Wake-up service</li>
-							</ul>
-						</div>
-						<!--ROOM PRICE-->
-						<div class="r4 r-com">
-							<p>Price for 1 night</p>
-							<p><span class="room-price-1">3500</span> <span class="room-price">$: 4000</span>
-							</p>
-							<p>Non Refundable</p>
-						</div>
-						<!--ROOM BOOKING BUTTON-->
-						<div class="r5 r-com">
-							<div class="r2-available">Available</div>
-							<p>Price for 1 night</p> <a href="booking.php" class="inn-room-book">Book</a> </div>
-					</div>
-					<!--END ROOM SECTION-->
-					<!--ROOM SECTION-->
-					<div class="room">
-						<!--<div class="ribbon ribbon-top-left"><span>Best Room</span></div>-->
-						<!--ROOM IMAGE-->
-						<div class="r1 r-com"><img src="images/room/4.jpg" alt="" />
-						</div>
-						<!--ROOM RATING-->
-						<div class="r2 r-com">
-							<h4>Luxury Room</h4>
-							<div class="r2-ratt"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <img src="images/h-trip.png" alt="" /> <span>Excellent  4.0 / 5</span> </div>
-							<ul>
-								<li>Max Adult : 5</li>
-								<li>Max Child : 2</li>
-								<li></li>
-								<li></li>
-							</ul>
-						</div>
-						<!--ROOM AMINITIES-->
-						<div class="r3 r-com">
-							<ul>
-								<li>Ironing facilities</li>
-								<li>Tea/Coffee maker</li>
-								<li>Air conditioning</li>
-								<li>Flat-screen TV</li>
-								<li>Wake-up service</li>
-							</ul>
-						</div>
-						<!--ROOM PRICE-->
-						<div class="r4 r-com">
-							<p>Price for 1 night</p>
-							<p><span class="room-price-1">3000</span> <span class="room-price">$: 3500</span>
-							</p>
-							<p>Non Refundable</p>
-						</div>
-						<!--ROOM BOOKING BUTTON-->
-						<div class="r5 r-com">
-							<div class="r2-available">Available</div>
-							<p>Price for 1 night</p> <a href="booking.php" class="inn-room-book">Book</a> </div>
-					</div>
-					<!--END ROOM SECTION-->
-					<!--ROOM SECTION-->
-					<div class="room">
-						<div class="ribbon ribbon-top-left"><span>Special</span>
-						</div>
-						<!--ROOM IMAGE-->
-						<div class="r1 r-com"><img src="images/room/5.jpg" alt="" />
-						</div>
-						<!--ROOM RATING-->
-						<div class="r2 r-com">
-							<h4>Premium Room</h4>
-							<div class="r2-ratt"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <img src="images/h-trip.png" alt="" /> <span>Excellent  4.5 / 5</span> </div>
-							<ul>
-								<li>Max Adult : 5</li>
-								<li>Max Child : 2</li>
-								<li></li>
-								<li></li>
-							</ul>
-						</div>
-						<!--ROOM AMINITIES-->
-						<div class="r3 r-com">
-							<ul>
-								<li>Ironing facilities</li>
-								<li>Tea/Coffee maker</li>
-								<li>Air conditioning</li>
-								<li>Flat-screen TV</li>
-								<li>Wake-up service</li>
-							</ul>
-						</div>
-						<!--ROOM PRICE-->
-						<div class="r4 r-com">
-							<p>Price for 1 night</p>
-							<p><span class="room-price-1">4000</span> <span class="room-price">$: 5000</span>
-							</p>
-							<p>Non Refundable</p>
-						</div>
-						<!--ROOM BOOKING BUTTON-->
-						<div class="r5 r-com">
-							<div class="r2-available">Available</div>
-							<p>Price for 1 night</p> <a href="booking.php" class="inn-room-book">Book</a> </div>
-					</div>
-					<!--END ROOM SECTION-->
-					<!--ROOM SECTION-->
-					<div class="room">
-						<!--<div class="ribbon ribbon-top-left"><span>Featured</span></div>-->
-						<!--ROOM IMAGE-->
-						<div class="r1 r-com"><img src="images/room/6.jpg" alt="" />
-						</div>
-						<!--ROOM RATING-->
-						<div class="r2 r-com">
-							<h4>Normal Room</h4>
-							<div class="r2-ratt"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <img src="images/h-trip.png" alt="" /> <span>Excellent  3.5 / 5</span> </div>
-							<ul>
-								<li>Max Adult : 4</li>
-								<li>Max Child : 4</li>
-								<li></li>
-								<li></li>
-							</ul>
-						</div>
-						<!--ROOM AMINITIES-->
-						<div class="r3 r-com">
-							<ul>
-								<li>Ironing facilities</li>
-								<li>Tea/Coffee maker</li>
-								<li>Air conditioning</li>
-								<li>Flat-screen TV</li>
-								<li>Wake-up service</li>
-							</ul>
-						</div>
-						<!--ROOM PRICE-->
-						<div class="r4 r-com">
-							<p>Price for 1 night</p>
-							<p><span class="room-price-1">2000</span> <span class="room-price">$: 2500</span>
-							</p>
-							<p>Non Refundable</p>
-						</div>
-						<!--ROOM BOOKING BUTTON-->
-						<div class="r5 r-com">
-							<div class="r2-available">Available</div>
-							<p>Price for 1 night</p> <a href="booking.php" class="inn-room-book">Book</a> </div>
-					</div>
-					<!--END ROOM SECTION-->
+                    <?php  if (!empty($cabins)) {
+                        foreach ($cabins as $cabin) {
+                            $cabinType = \Hotel\Models\CabinType::find($cabin["type"]); 
+                            $booking = \Hotel\Models\Booking::where("cabinid", $cabin["id"])->get()->toArray();
+                            $dateRang = $misc->dateRange();
+                            foreach ($booking as $book) {
+                                $index = array_search($book["date"], $dateRang);
+                                unset($dateRang[$index]);
+                            } ?>
+                        
+                    <!--ROOM SECTION-->
+                    <div class="room">
+                        <!--ROOM IMAGE-->
+                        <a href="cabin.php?cabinid=<?php echo $cabin["id"]; ?>">
+                            <div class="r1 r-com"><img src="<?php echo $cabin["cabin_thumb"]; ?>" alt="" />
+                            </div>
+                            <div class="r2 r-com">
+                                <h4><?php echo $cabin["name"]; ?></h4>
+                                <ul>
+                                    <li>Min Adult : 2</li>
+                                    <li>Min Adult : 2</li>
+                                    <li>Cabin Type : <?php echo $cabinType["name"]; ?></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div>
+                        </a>
+                        <!--ROOM AMINITIES-->
+                        <div class="r3 r-com">
+                            <ul>
+                                <li>Lavish style</li>
+                                <li>Hot tubs</li>
+                                <?php if (!empty($cabin["facility"])) {
+                                    $facilities = unserialize($cabin["facility"]);
+                                    foreach ($facilities as $f) { ?>
+                                        <li><?php echo $f ?></li>
+                                   <?php  }
+                                } ?>
+                            </ul>
+                        </div>
+                        <!--ROOM PRICE-->
+                        <div class="dex_cabin_price r4 r-com">
+                            <p>Price for 1 night</p>
+                            <p>
+                                <span class="room-price-1"><?php  if ($currency == null) { echo $cabin["price"]; } else { echo $cabin["price"] * $converter->convert("usd", $currency); echo '&nbsp;' . strtoupper($currency); } ?></span> 
+                            </p>
+                            <p>Non Refundable</p>
+                        </div>
+                        <!--ROOM BOOKING BUTTON-->
+                        <div class="dex_cabin_available r5 r-com">
+                            <?php if (!empty($dateRang)) { ?>
+                                <div class="r2-available">Available</div>
+                            <?php 
+                            foreach ($dateRang as $date) { ?>
+                                <p><?php echo $date; ?></p>
+                            <?php }
+                        } else{ ?>
+                                <div class="not-available">Not Available</div>                        
+                        <?php } ?>
+                            <a href="booking.php?cabinid=<?php echo $cabin["id"]; ?>" class="inn-room-book">Book</a> </div>
+                    </div>
+                    <!--END ROOM SECTION-->                        
+                        <?php }
+                    } ?>
 				</div>
 			</div>
 		</div>

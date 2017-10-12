@@ -11,10 +11,12 @@ ini_set("display_errors", 1);
 ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
 
+define("BASE_DIR", $_SERVER['DOCUMENT_ROOT'] . "/dw/");
+
 // mail configuration
 $mail = new PHPMailer;
 $mail->isSMTP();
-$mail->SMTPDebug = 2;
+$mail->SMTPDebug = 0;
 $mail->Host = 'smtp.gmail.com';
 $mail->Port = 587;
 $mail->SMTPSecure = 'tls';
@@ -69,3 +71,10 @@ if ($auth->isLoggedIn()) {
 if ($auth->admin()->doesUserHaveRole(4, \Delight\Auth\Role::ADMIN)) {
     
 }
+
+
+$converter = new CurrencyConverter\CurrencyConverter;
+$cacheAdapter = new CurrencyConverter\Cache\Adapter\FileSystem(BASE_DIR . 'cache/');
+$cacheAdapter->setCacheTimeout(DateInterval::createFromDateString('10 second'));
+$converter->setCacheAdapter($cacheAdapter);
+

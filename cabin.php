@@ -1,7 +1,17 @@
 <?php 
 $title = "Cabin";
-include_once 'partials/header.php'; ?>
-		<div class="hp-banner"> <img src="images/detailed-banner.jpg" alt=""> </div>
+include_once 'partials/header.php'; 
+
+if (isset($_GET["cabinid"])) {
+    $cabinId = (int) $_GET["cabinid"];
+    $cabin = \Hotel\Models\Cabin::find($cabinId)->toArray();
+}
+if (empty($cabin)) {
+    header("Location: cabins.php");
+}
+$cabinType = \Hotel\Models\CabinType::find($cabin["type"]);
+?>
+		<div class="hp-banner"> <img src="<?php echo $cabin["cabin_img"]; ?>" alt=""> </div>
 		<!--END HOTEL ROOMS-->
 		<!--END CHECK AVAILABILITY FORM-->
 		<div class="hom-com">
@@ -11,10 +21,10 @@ include_once 'partials/header.php'; ?>
 						<div class="row">
 							<div class="hp-section">
 								<div class="hp-sub-tit">
-									<h4><span>Master Suite</span> Cabin</h4>
+									<h4><?php echo $cabin["name"]; ?></h4>
 								</div>
 								<div class="hp-amini">
-									<p>Maecenas erat lorem, vulputate sed ex at, vehicula dignissim risus. Nullam non nisi congue elit cursus tempus. Nunc vel ante nec libero semper maximus. Donec cursus sed massa eget commodo. Phasellus semper neque id iaculis malesuada. Nulla efficitur dui vitae orci blandit tempor. Mauris sed venenatis nibh, sed sodales risus.</p>
+									<p><?php echo $cabin["descriptions"]; ?></p>
 								</div>
 							</div>
 							<div class="hp-section">
@@ -44,8 +54,16 @@ include_once 'partials/header.php'; ?>
 					<div class="col-md-4">
 						<!--=========================================-->
 						<div class="hp-call hp-right-com">
+                            <div class="hotel_detials_area">
+                                <ul>
+                                    <li>Special Offer Start Date: <span><?php echo $cabin["so_start_date"]; ?></span></li>
+                                    <li>Special Offer End Date: <span><?php echo $cabin["so_end_date"]; ?></span></li>
+                                    <li>Special Offer Price: $ <span><?php echo $cabin["so_price"]; ?></span></li>
+                                    <li>Cabin Type: <span><?php echo $cabinType["name"]; ?></span></li>
+                                </ul>
+                            </div>
 							<div class="hp-call-in">
-								<h3><span>Price</span> $ 50000</h3><a href="#">Book this Cabin</a> </div>
+								<h3><span>Price</span> $ <?php echo $cabin["price"]; ?></h3><a href="booking.php?cabinid=<?php echo $cabin["id"]; ?>">Book this Cabin</a> </div>
 						</div>
 						<!--=========================================-->
 						<!--=========================================-->

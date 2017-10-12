@@ -8,6 +8,7 @@
         "delight-im/auth": "^6.1",
         "illuminate/database": "^5.5",
         "phpmailer/phpmailer": "^6.0",
-		"vlucas/valitron": "^1.4"
+		"vlucas/valitron": "^1.4",
+		"ujjwal/currency-converter": "^2.2"
     }
 }

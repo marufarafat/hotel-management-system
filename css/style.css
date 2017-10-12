@@ -211,6 +211,7 @@ th {
     width: 100%;
     z-index: 999;
     top: 0px;
+    /*display: none;*/
 }
 .logo {
     float: left;
@@ -729,6 +730,11 @@ td {} .inn-com p {} .inn-com-form {} .inn-com-form form {
 .inn-services {
     margin-bottom: 30px;
 }
+.dex_forum img {
+    height: 100px;
+    width: 100px;
+    border-radius: 46px;
+}
 .inn-services img {
     width: 100%;
 }
@@ -857,7 +863,10 @@ td {} .inn-com p {} .inn-com-form {} .inn-com-form form {
 }
 .aminities ul li p {
     padding-top: 0px;
-    color: #8c8c8c;
+    color: #484848;
+}
+.aminities ul li small {
+    color: #b9b7b7;
 }
 .aminities-line::after {
     content: '';
@@ -1739,7 +1748,6 @@ td {} .inn-com p {} .inn-com-form {} .inn-com-form form {
 }
 .db-left-1 {
     padding: 116px 50px 30px 50px;
-    background: url('../images/user.jpg') no-repeat center center;
     background-size: cover;
     position: relative;
     /* overflow: hidden; */
@@ -3134,7 +3142,7 @@ a.ui-button:active,
 }
 .hovereffect {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     float: left;
     overflow: hidden;
     position: relative;
@@ -4544,4 +4552,89 @@ form .stars label:before {
     height: 41px;
     padding-left: 40px;
     padding-top: 0;
+}
+
+/*-------------------------------------------------------*/
+/*  Ask question
+/*-------------------------------------------------------*/
+
+.dex_ask{
+    margin-top: 0;
+}
+
+
+/*-------------------------------------------------------*/
+/*  single cabin
+/*-------------------------------------------------------*/
+
+.hotel_detials_area{
+    display: inline-block;
+}
+.hotel_detials_area ul{}
+.hotel_detials_area ul li{
+    font-size: 16px;
+    float: right;
+    width: 101%;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 9px;
+}
+.hotel_detials_area ul li span{
+    font-size: 20px;
+    padding-left: 5px;
+    color: #b59365;
+}
+
+/*-------------------------------------------------------*/
+/*  confirm
+/*-------------------------------------------------------*/
+
+.dex_confirmation_area{
+    -ms-transform: rotate(1deg); /* IE 9 */
+    -webkit-transform: rotate(1deg); /* Safari */
+    transform: rotate(1deg); /* Standard syntax */
+}
+.dex_confirmation_area .confirm_header{
+    text-align: center;
+}
+.dex_confirmation_area .user_info{}
+.dex_confirmation_area .user_info .key{
+
+    font-weight: bold;
+    width: 165px;
+}
+.dex_confirmation_area .purchase_info{}
+.dex_confirmation_area .purchase_info .value{
+text-align: right;
+}
+.dex_confirmation_area .confirm_button{}
+.dex_confirmation_area .confirm_button a{
+margin-top: 50px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+span.fc-title,
+span.fc-time {
+    color: #fff;
+}
+
+.dex_cabin_price{
+    width: 13% !important;
+}
+.dex_cabin_available{
+    width: 27%;
+}
+
+.not-available {
+    background: red;
+    display: inline-block;
+    padding: 5px 10px 2px 10px;
+    /* margin-top: 10px; */
+    border-radius: 44px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 12px;
 }

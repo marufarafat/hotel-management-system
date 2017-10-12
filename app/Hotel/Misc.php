@@ -4,6 +4,10 @@
 namespace Hotel;
 
 
+use DateTime;
+use DateInterval;
+use DatePeriod;
+
 /**
 * Misc
 */
@@ -77,10 +81,39 @@ class Misc{
             $profilePic->image_y = $img_y;
             $profilePic->Process($uploadDir);
             if ($profilePic->processed) {
-                return $uploadDir . $unique . ".jpg";
+                $directory = str_replace("../", "", $uploadDir);
+                return $directory . $unique . ".jpg";
             } else {
                 return false;
             }
         }
+    }
+
+
+    public function dateRange(){
+
+        // init and assign value to variable.
+        $begin = new DateTime();
+        $end = new DateTime("+ 9 days");
+        $interval = null;
+        $strDate = array();
+        $toDate = array();
+
+        // Because DatePeriod does not include the last date specified.
+        $end = $end->modify('+1 day');
+        $interval = new DateInterval($interval ? $interval : 'P1D');
+
+        $dates = iterator_to_array(new DatePeriod($begin, $interval, $end), false);
+        foreach ($dates as $date) {
+            if ($date->format("D") === "Mon" || $date->format("D") === "Fri") {
+                $strDate[] = $date->format("Y-m-d l");
+            }
+            
+        }
+
+        for ($i=0; $i < 2; $i++) { 
+            $toDate[] = $strDate[$i] . " to " . $strDate[$i+1];
+        }
+        return $toDate;
     }
 }

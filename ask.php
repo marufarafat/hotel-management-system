@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["ask"]) && isset($_GET["c
     $v = new Valitron\Validator($_GET);
     $v->rule('required', ['question', 'description']);
 
-        if (!$v->validate()) {
+    if (!$v->validate()) {
         $misc->setMessages($v->errors());
     } else{
         $question = Hotel\Models\Questions::create(array(

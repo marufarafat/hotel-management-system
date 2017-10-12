@@ -43,7 +43,7 @@
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     
     <!-- Custom scripts for this template -->
-    <script src="js/sb-admin.min.js"></script>
+    <script src="js/sb-admin.js"></script>
 
   </body>
 

@@ -9,7 +9,7 @@
                             </li>
                             <li><a href="contact-us.php">Contact Us</a>
                             </li>
-                            <li><a class='dropdown-button' href='#' data-activates='dropdown2'>Language <i class="fa fa-angle-down"></i></a>
+                            <li><a class='dropdown-button' href='#' data-activates='currency'>Currency  <i class="fa fa-angle-down"></i></a>
                             </li>
                             <li><a href="#">Toll Free No: +880 1XXX - XXXXXX</a>
                             </li>
@@ -44,17 +44,10 @@
                             </li>
                         </ul>
                         <!-- Dropdown Structure -->
-                        <ul id='dropdown2' class='dropdown-content drop-con-man'>
-                            <li><a href="#!">English</a>
-                            </li>
-                            <li><a href="#!">Spanish</a>
-                            </li>
-                            <li><a href="#!">Hindi</a>
-                            </li>
-                            <li><a href="#!">Russian</a>
-                            </li>
-                            <li><a href="#!">Portuguese</a>
-                            </li>
+                        <ul id='currency' class='dropdown-content drop-con-man'>
+                            <li><a href="?currency=usd">Dollar</a></li>
+                            <li><a href="?currency=gbp">Pound</a></li>
+                            <li><a href="?currency=eur">Euro</a></li>
                         </ul>
                     </div>
                 </div>
@@ -68,6 +61,8 @@
                             <li><a href="index.php">Home</a>
                             </li>
                             <li><a href="cabins.php">Cabins</i></a>
+                            </li>
+                            <li><a href="Park.php">Park</a>
                             </li>
                             <li><a href="services.php">Services</a>
                             </li>

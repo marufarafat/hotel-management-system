@@ -1,40 +1,31 @@
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-          <li class="nav-item active" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="index.php">
-              <i class="fa fa-fw fa-dashboard"></i>
-              <span class="nav-link-text">
-                Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cabins">
-            <a class="nav-link" href="cabin.php">
-              <i class="fa fa-fw fa-area-chart"></i>
-              <span class="nav-link-text">
-                Cabins</span>
-            </a>
-          </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-            <a class="nav-link" href="#">
-              <i class="fa fa-fw fa-table"></i>
-              <span class="nav-link-text">
-                Tables</span>
-            </a>
-          </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
-              <i class="fa fa-fw fa-wrench"></i>
-              <span class="nav-link-text">
-                Components</span>
-            </a>
-            <ul class="sidenav-second-level collapse" id="collapseComponents">
-              <li>
-                <a href="static-nav.html">Static Navigation</a>
-              </li>
-              <li>
-                <a href="#">Custom Card Examples</a>
-              </li>
-            </ul>
-          </li>
+            <li class="nav-item active" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                <a class="nav-link" href="index.php">
+                  <i class="fa fa-fw fa-dashboard"></i>
+                  <span class="nav-link-text">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cabins">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCabin" data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-wrench"></i>
+                    <span class="nav-link-text">Cabins</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapseCabin">
+                    <li><a href="cabins.php">Cabins</a></li>
+                    <li><a href="create-cabin.php">Create Cabin</a></li>
+                    <li><a href="cabin-type.php">Cabin type</a></li>
+                </ul>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Discounts">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseDiscount" data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-wrench"></i>
+                    <span class="nav-link-text">Discounts</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapseDiscount">
+                    <li><a href="discounts.php">Discounts</a></li>
+                    <li><a href="create-dicount.php">Create Discount</a></li>
+                </ul>
+            </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
             <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-file"></i>

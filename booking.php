@@ -1,89 +1,93 @@
 <?php 
 $title = "Booking";
-include_once 'partials/header.php'; ?>
+include_once 'partials/header.php'; 
+
+if (!$auth->isLoggedIn()) {
+    header("location: login.php");
+}
+$cabinid = 0;
+if (isset($_GET["cabinid"])) {
+    $cabinid = $_GET["cabinid"];
+}
+
+$booking = \Hotel\Models\Booking::where("cabinid", $cabinid)->get()->toArray();
+
+$dateRang = $misc->dateRange();
+
+foreach ($booking as $book) {
+
+    // Search
+    $index = array_search($book["date"], $dateRang);
+
+    // Remove from array
+    unset($dateRang[$index]);
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["booking"]) && isset($_GET["csrf"]) && $_GET["csrf"] === \Hotel\CSRF::get("booking")){
+
+    // setting conditiion for input field
+    $v = new Valitron\Validator($_GET);
+    $v->rule('required', array("booking_date", "cabinid"));
+
+
+    if (!$v->validate()) {
+        $misc->setMessages($v->errors());
+    } else{
+        $_SESSION["date"] = $_GET["booking_date"];
+        $_SESSION["cabinid"] = $_GET["cabinid"];
+        if (!empty($_GET["booking_description"])) {
+            $_SESSION["booking_description"] = $_GET["booking_description"];
+        }
+        header("Location: confirm.php");
+    }
+}
+?>
 		<div class="inn-body-section inn-booking">
 			<div class="container">
 				<div class="row">
 					<!--TYPOGRAPHY SECTION-->
 					<div class="col-md-6">
 						<div class="book-title">
-							<h2>Hotel Booking</h2>
+							<h2>Cabin Booking</h2>
+                            <?php if (empty($dateRang)) { ?>
+                                <p>you can't book this cabin on this week.</p>
+                            <?php } else{ ?>
 							<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                            <?php } ?>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="book-form inn-com-form">
-							<form class="col s12">
+							<form class="col s12" action="" method="get">
+                                <?php 
+                                echo "<pre>";
+                                var_dump($misc->getMessages());
+                                echo "</pre>";
+                                 ?>
 								<div class="row">
-									<div class="input-field col s6">
-										<input type="text" class="validate">
-										<label>Full Name</label>
-									</div>
-									<div class="input-field col s6">
-										<input type="text" class="validate">
-										<label>Email</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s6">
-										<input type="text" class="validate">
-										<label>Phone</label>
-									</div>
-									<div class="input-field col s6">
-										<input type="text" class="validate">
-										<label>Mobile</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s6">
-										<input type="text" class="validate">
-										<label>City</label>
-									</div>
-									<div class="input-field col s6">
-										<input type="text" class="validate">
-										<label>Country</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s6">
-										<select>
-											<option value="" disabled selected>No of adults</option>
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="1">4</option>
+									<div class="input-field col s12">
+										<select  name="booking_date" >
+											<option value="" disabled selected>Select your date</option>
+                                            <?php foreach ($dateRang as $date) {  ?>
+                                                <option value="<?php echo $date; ?>"><?php echo $date; ?></option>
+                                            <?php } ?>
 										</select>
-									</div>
-									<div class="input-field col s6">
-										<select>
-											<option value="" disabled selected>No of childrens</option>
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="1">4</option>
-										</select>
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s6">
-										<input type="text" id="from" name="from">
-										<label for="from">Arrival Date</label>
-									</div>
-									<div class="input-field col s6">
-										<input type="text" id="to" name="to">
-										<label for="to">Departure Date</label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="input-field col s12">
-										<textarea id="textarea1" class="materialize-textarea" data-length="120"></textarea>
+										<textarea id="textarea1" name="booking_description" class="materialize-textarea" data-length="120"></textarea>
 										<label>Message</label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="input-field col s12">
-										<input type="submit" value="submit" class="form-btn"> </div>
+										<input type="submit" name="booking" value="submit" class="form-btn"> </div>
 								</div>
+
+            <input type="hidden" name="csrf" value="<?php echo \Hotel\CSRF::generate("booking"); ?>">
+            <input type="hidden" name="cabinid" value="<?php echo $cabinid; ?>">
 							</form>
 						</div>
 					</div>

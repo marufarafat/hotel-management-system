@@ -18,10 +18,13 @@ class Cabin extends Model{
     protected $fillable = [
         "name",
         "descriptions",
-        "min_adult",
-        "min_child",
+        "so_start_date",
+        "so_end_date",
+        "so_price",
         "price",
         "cabin_img",
-        "type"
+        "cabin_thumb",
+        "type",
+        "facility"
     ]; 
 }

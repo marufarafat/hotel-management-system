@@ -38,7 +38,7 @@ $questions = \Hotel\Models\Questions::orderBy('id', 'DESC')->get()->toArray();
                         <?php if (!empty($questions)) {
                             foreach ($questions as $question) {
                                 $user = \Hotel\Models\Users::find($question["user_id"])->toArray(); ?>
-                            <div class="row inn-services in-blog">
+                            <div class="dex_forum row inn-services in-blog">
                                 <div class="col-md-2"> <img src="<?php echo $user["profile_picture"]; ?>" alt="<?php echo $question["question"]; ?>" /> </div>
                                 <div class="col-md-10">
                                     <a href="question.php?questionid=<?php echo $question["id"]; ?>"><h3><?php echo $question["question"]; ?></h3> </a>

@@ -60,12 +60,14 @@
     </section>
     <?php include_once 'partials/modal.php'; ?>
     <!--ALL SCRIPT FILES-->
+    <script src="js/moment.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/bootstrap.js" type="text/javascript"></script>
     <script src="js/materialize.min.js" type="text/javascript"></script>
     <script src="js/jquery.mixitup.min.js" type="text/javascript"></script>
+    <script src="js/fullcalendar.min.js" type="text/javascript"></script>
     <script src="js/custom.js"></script>
 </body>
 </html>
