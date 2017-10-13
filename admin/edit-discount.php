@@ -59,11 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["update_discount"]) && is
         <div class="col-lg-8 col-md-8 col-sm-12">
             <form action="" method="get">
 
-                <?php 
-                echo "<pre>";
-                var_dump($misc->getMessages());
-                echo "</pre>";
-                 ?>
+                <?php $misc->getMessages(); ?>
 
               <div class="form-group">
                 <label for="discount_name">Name of discount</label>

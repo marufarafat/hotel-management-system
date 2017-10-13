@@ -10,19 +10,7 @@ if (isset($_GET["cabinid"])) {
     $cabinid = $_GET["cabinid"];
 }
 
-$booking = \Hotel\Models\Booking::where("cabinid", $cabinid)->get()->toArray();
-
-$dateRang = $misc->dateRange();
-
-foreach ($booking as $book) {
-
-    // Search
-    $index = array_search($book["date"], $dateRang);
-
-    // Remove from array
-    unset($dateRang[$index]);
-}
-
+$dateRang = $misc->getCabinAvailableDate($cabinid);
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["booking"]) && isset($_GET["csrf"]) && $_GET["csrf"] === \Hotel\CSRF::get("booking")){
 
@@ -60,11 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["booking"]) && isset($_GE
 					<div class="col-md-6">
 						<div class="book-form inn-com-form">
 							<form class="col s12" action="" method="get">
-                                <?php 
-                                echo "<pre>";
-                                var_dump($misc->getMessages());
-                                echo "</pre>";
-                                 ?>
+                                <?php $misc->getMessages(); ?>
 								<div class="row">
 									<div class="input-field col s12">
 										<select  name="booking_date" >

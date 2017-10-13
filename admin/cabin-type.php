@@ -94,11 +94,7 @@ if (isset($_GET["deletecabintypeid"])) {
     <div class="col-lg-4 col-md-4 col-sm-12">
         <form action="" method="get">
 
-                <?php 
-                echo "<pre>";
-                var_dump($misc->getMessages());
-                echo "</pre>";
-                 ?>
+                <?php $misc->getMessages(); ?>
 
             <div class="form-group">
                 <label for="cabinTypeName">Name</label>

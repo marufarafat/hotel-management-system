@@ -67,11 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["complete-profile"]) &&
 
 
 
-                                <?php 
-                                echo "<pre>";
-                                var_dump($misc->getMessages());
-                                echo "</pre>";
-                                 ?>
+                                <?php $misc->getMessages(); ?>
 
 
                         <div>

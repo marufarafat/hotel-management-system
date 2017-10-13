@@ -66,11 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["cabin"]) && isset($_PO
         <div class="col-lg-8 col-md-8 col-sm-12">
             <form action="" method="post" enctype="multipart/form-data">
 
-                <?php 
-                echo "<pre>";
-                var_dump($misc->getMessages());
-                echo "</pre>";
-                 ?>
+                <?php $misc->getMessages(); ?>
 
               <div class="form-group">
                 <label for="cabin-name">Cabin Name</label>

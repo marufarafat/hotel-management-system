@@ -1,6 +1,15 @@
 <?php 
 $title = "Home";
-include_once 'partials/header.php'; ?>
+include_once 'partials/header.php'; 
+
+$currency = null;
+if (isset($_GET["currency"])) {
+    $currency = $_GET["currency"];
+}
+
+$cabins = \Hotel\Models\Cabin::orderBy('id', 'DESC')->get()->toArray();
+
+?>
 		<!--Check Availability SECTION-->
 		<div>
 			<div class="slider fullscreen">
@@ -54,113 +63,37 @@ include_once 'partials/header.php'; ?>
 				<div class="row">
 					<div class="to-ho-hotel">
 						<!-- HOTEL GRID -->
+                    <?php  if (!empty($cabins)) {
+                        foreach ($cabins as $cabin) {
+                            $cabinType = \Hotel\Models\CabinType::find($cabin["type"]); 
+                            $dateRang = $misc->getCabinAvailableDate($cabin["id"]); ?>
+
 						<div class="col-md-4">
 							<div class="to-ho-hotel-con">
 								<div class="to-ho-hotel-con-1">
-									<div class="hom-hot-av-tic"> Available Tickets: 42 </div> <img src="images/room/3.jpg" alt=""> </div>
+									<img src="<?php echo $cabin["cabin_thumb"]; ?>" alt=""> </div>
 								<div class="to-ho-hotel-con-23">
-									<div class="to-ho-hotel-con-2"> <a href="all-rooms.html"><h4>Master Room</h4></a> </div>
+									<div class="to-ho-hotel-con-2"> <a href="cabin.php?cabinid=<?php echo $cabin["id"]; ?>"><h4><?php echo $cabin["name"]; ?></h4></a> </div>
 									<div class="to-ho-hotel-con-3">
 										<ul>
-											<li>City: illunois,united states
-												<div class="dir-rat-star ho-hot-rat-star"> Rating: <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i> </div>
-											</li>
-											<li><span class="ho-hot-pri-dis">$720</span><span class="ho-hot-pri">$420</span> </li>
+                            <?php if (!empty($dateRang)) { ?>
+                                <div class="r2-available">Available</div>
+                            <?php 
+                            foreach ($dateRang as $date) { ?>
+                                <li><?php echo $date; ?></li>
+                            <?php }
+                        } else{ ?>
+                                <div class="not-available">Not Available</div>                        
+                        <?php } ?>
+											<li><span class="ho-hot-pri"><?php  if ($currency == null) { echo $cabin["price"]; } else { echo $cabin["price"] * $converter->convert("usd", $currency); echo '&nbsp;' . strtoupper($currency); } ?></span> </li>
 										</ul>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- HOTEL GRID -->
-						<div class="col-md-4">
-							<div class="to-ho-hotel-con">
-								<div class="to-ho-hotel-con-1">
-									<div class="hom-hot-av-tic"> Available Tickets: 520 </div> <img src="images/room/1.jpg" alt=""> </div>
-								<div class="to-ho-hotel-con-23">
-									<div class="to-ho-hotel-con-2"> <a href="all-rooms.html"><h4>Mini-Suite</h4></a> </div>
-									<div class="to-ho-hotel-con-3">
-										<ul>
-											<li>City: illunois,united states
-												<div class="dir-rat-star ho-hot-rat-star"> Rating: <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i> </div>
-											</li>
-											<li><span class="ho-hot-pri-dis">$840</span><span class="ho-hot-pri">$540</span> </li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- HOTEL GRID -->
-						<div class="col-md-4">
-							<div class="to-ho-hotel-con">
-								<div class="to-ho-hotel-con-1">
-									<div class="hom-hot-av-tic"> Available Tickets: 92 </div> <img src="images/room/2.jpg" alt=""> </div>
-								<div class="to-ho-hotel-con-23">
-									<div class="to-ho-hotel-con-2"> <a href="all-rooms.html"><h4>Ultra Deluxe</h4></a> </div>
-									<div class="to-ho-hotel-con-3">
-										<ul>
-											<li>City: illunois,united states
-												<div class="dir-rat-star ho-hot-rat-star"> Rating: <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i> </div>
-											</li>
-											<li><span class="ho-hot-pri-dis">$680</span><span class="ho-hot-pri">$380</span> </li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- HOTEL GRID -->
-						<div class="col-md-4">
-							<div class="to-ho-hotel-con">
-								<div class="to-ho-hotel-con-1">
-									<div class="hom-hot-av-tic"> Available Tickets: 42 </div> <img src="images/room/4.jpg" alt=""> </div>
-								<div class="to-ho-hotel-con-23">
-									<div class="to-ho-hotel-con-2"> <a href="all-rooms.html"><h4>Luxury Room</h4></a> </div>
-									<div class="to-ho-hotel-con-3">
-										<ul>
-											<li>City: illunois,united states
-												<div class="dir-rat-star ho-hot-rat-star"> Rating: <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i> </div>
-											</li>
-											<li><span class="ho-hot-pri-dis">$720</span><span class="ho-hot-pri">$420</span> </li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- HOTEL GRID -->
-						<div class="col-md-4">
-							<div class="to-ho-hotel-con">
-								<div class="to-ho-hotel-con-1">
-									<div class="hom-hot-av-tic"> Available Tickets: 520 </div> <img src="images/room/5.jpg" alt=""> </div>
-								<div class="to-ho-hotel-con-23">
-									<div class="to-ho-hotel-con-2"> <a href="all-rooms.html"><h4>Premium Room</h4></a> </div>
-									<div class="to-ho-hotel-con-3">
-										<ul>
-											<li>City: illunois,united states
-												<div class="dir-rat-star ho-hot-rat-star"> Rating: <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i> </div>
-											</li>
-											<li><span class="ho-hot-pri-dis">$840</span><span class="ho-hot-pri">$540</span> </li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- HOTEL GRID -->
-						<div class="col-md-4">
-							<div class="to-ho-hotel-con">
-								<div class="to-ho-hotel-con-1">
-									<div class="hom-hot-av-tic"> Available Tickets: 92 </div> <img src="images/room/6.jpg" alt=""> </div>
-								<div class="to-ho-hotel-con-23">
-									<div class="to-ho-hotel-con-2"> <a href="all-rooms.html"><h4>Normal Room</h4></a> </div>
-									<div class="to-ho-hotel-con-3">
-										<ul>
-											<li>City: illunois,united states
-												<div class="dir-rat-star ho-hot-rat-star"> Rating: <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i> </div>
-											</li>
-											<li><span class="ho-hot-pri-dis">$680</span><span class="ho-hot-pri">$380</span> </li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
+                
+                        <?php }
+                    } ?>
 					</div>
 				</div>
 			</div>

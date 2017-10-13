@@ -22,40 +22,37 @@ class Misc{
             return ;
         }
 
-        $this->messages = $message;
+        $result = array(); 
+        foreach ($message as $key => $value) { 
+            if (is_array($value)) { 
+                $result = array_merge($result, array_flatten($value)); 
+            } 
+            else { 
+                $result[$key] = $value; 
+            } 
+        } 
 
-
-        // foreach ($message as $key => $value) {
-        //     if (is_array($value)) {
-        //         foreach ($value as $v) { // need to run for loop to solve this problem.
-        //             $this->message = $v;
-        //         }
-                
-        //     }
-        // }
+        $this->messages = $result; 
     }
 
     public function getMessages($color = 'danger'){
 
         // need to solve set mathod
 
-        // if (!empty($this->messages)) {
-        //     foreach ($this->messages as $message) {
-        //         $this->styleMessage($message, $color);
-        //     }
-        // }
-
-        return $this->messages;
+        if (!empty($this->messages)) {
+            foreach ($this->messages as $message) {
+                $this->styleMessage($message, $color);
+            }
+        }
     }
 
     public function styleMessage($message, $color = 'danger'){?>
-        <div class="alert alert-<?php echo $color; ?> alert-dismissible fade show" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="alert alert-<?php echo $color; ?>">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
             <?php echo $message; ?>
         </div>
     <?php }
+
 
     public function imageProcess($image, $uploadDir = "uploads/", $img_x = 500, $img_y = 500){
 
@@ -115,5 +112,23 @@ class Misc{
             $toDate[] = $strDate[$i] . " to " . $strDate[$i+1];
         }
         return $toDate;
+    }
+
+    public function getCabinAvailableDate($id){
+
+        $booking = \Hotel\Models\Booking::where("cabinid", $id)->get()->toArray();
+
+        $dateRang = $this->dateRange();
+
+        foreach ($booking as $book) {
+
+            // Search
+            $index = array_search($book["date"], $dateRang);
+
+            // Remove from array
+            unset($dateRang[$index]);
+        }
+
+        return $dateRang;
     }
 }

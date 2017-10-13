@@ -39,12 +39,7 @@ $cabins = \Hotel\Models\Cabin::orderBy('id', 'DESC')->get()->toArray();
                     <?php  if (!empty($cabins)) {
                         foreach ($cabins as $cabin) {
                             $cabinType = \Hotel\Models\CabinType::find($cabin["type"]); 
-                            $booking = \Hotel\Models\Booking::where("cabinid", $cabin["id"])->get()->toArray();
-                            $dateRang = $misc->dateRange();
-                            foreach ($booking as $book) {
-                                $index = array_search($book["date"], $dateRang);
-                                unset($dateRang[$index]);
-                            } ?>
+                            $dateRang = $misc->getCabinAvailableDate($cabin["id"]); ?>
                         
                     <!--ROOM SECTION-->
                     <div class="room">
@@ -78,7 +73,6 @@ $cabins = \Hotel\Models\Cabin::orderBy('id', 'DESC')->get()->toArray();
                         </div>
                         <!--ROOM PRICE-->
                         <div class="dex_cabin_price r4 r-com">
-                            <p>Price for 1 night</p>
                             <p>
                                 <span class="room-price-1"><?php  if ($currency == null) { echo $cabin["price"]; } else { echo $cabin["price"] * $converter->convert("usd", $currency); echo '&nbsp;' . strtoupper($currency); } ?></span> 
                             </p>

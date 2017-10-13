@@ -69,11 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"]) && isset($
                         <div class="dex_registration book-form inn-com-form">
                             <form action="" method="post" autocomplete="off">
 
-                                <?php 
-                                echo "<pre>";
-                                var_dump($misc->getMessages());
-                                echo "</pre>";
-                                 ?>
+                                <?php $misc->getMessages(); ?>
 
                                 <h3>Create an account.</h3>
                                 <div>

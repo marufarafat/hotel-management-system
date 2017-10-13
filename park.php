@@ -1,6 +1,10 @@
 <?php 
 $title = "Parks";
-include_once 'partials/header.php'; ?>
+include_once 'partials/header.php'; 
+
+$cabins = \Hotel\Models\Cabin::get();
+
+?>
         <!--TOP BANNER-->
         <div class="inn-banner">
             <div class="container">
@@ -134,56 +138,23 @@ include_once 'partials/header.php'; ?>
             businessHours: true, // display business hours
             editable: true,
             events: [
+            <?php if (!empty($cabins)) {
+                foreach ($cabins as $cabin) { ?>
+                     {
+                        title: '<?php echo $cabin->name . "  $ " . $cabin->so_price . " special discount are available." ?>',
+                        start: '<?php echo $cabin->so_start_date; ?>',
+                        end: '<?php echo $cabin->so_end_date; ?>',
+                        overlap: false,
+                        color: '#257e4a'
+                    },
+             <?php   }
+            } ?>
 
-            //     {
-            //         title: 'Business Lunch',
-            //         start: '2017-10-03T13:00:00',
-            //         constraint: 'businessHours',
-            //         constraint: 'availableForMeeting', // defined below
-            //     },
-            //     {
-            //         title: 'Meeting',
-            //         start: '2017-10-13T11:00:00',
-            //         color: '#257e4a'
-            //     },
-            //     {
-            //         title: 'Conference',
-            //         start: '2017-10-18',
-            //         end: '2017-10-20'
-            //     },
-            //     {
-            //         title: 'Party',
-            //         start: '2017-10-29T20:00:00'
-            //     },
-
-            //     // areas where "Meeting" must be dropped
-            //     {
-            //         id: 'availableForMeeting',
-            //         start: '2017-10-11T10:00:00',
-            //         end: '2017-10-11T16:00:00',
-            //         rendering: 'background'
-            //     },
-            //     {
-            //         id: 'availableForMeeting',
-            //         start: '2017-10-13T10:00:00',
-            //         end: '2017-10-13T16:00:00',
-            //         rendering: 'background'
-            //     },
-
-            //     // red areas where no events can be dropped
-            //     {
-            //         start: '2017-10-24',
-            //         end: '2017-10-28',
-            //         overlap: false,
-            //         rendering: 'background',
-            //         color: '#ff9f89'
-            //     },
                 {
-                    title: 'Conference $200 discount',
-                    start: '2017-10-06',
-                    end: '2017-10-08',
-                    overlap: false,
-                    color: '#257e4a'
+                    id: 'availableForMeeting',
+                    start: '2017-10-11T10:00:00',
+                    end: '2017-10-11T16:00:00',
+                    rendering: 'background'
                 }
             ]
         });

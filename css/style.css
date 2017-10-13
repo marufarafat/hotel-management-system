@@ -599,7 +599,7 @@ td {} .inn-com p {} .inn-com-form {} .inn-com-form form {
 .room-price-1 {
     /* text-decoration: line-through; */
     
-    font-size: 32px;
+    font-size: 23px;
     font-weight: 600;
     font-family: 'Quicksand', sans-serif;
     color: #333;

@@ -81,11 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"]) && isset($_PO
                             <form method="post" action="" autocomplete="off">
                             <h3>Login to your account.</h3>
 
-                                <?php 
-                                echo "<pre>";
-                                var_dump($misc->getMessages());
-                                echo "</pre>";
-                                 ?>
+                                <?php $misc->getMessages(); ?>
 
                                 <div>
                                     <div class="input-field s12">
